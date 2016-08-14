@@ -84,11 +84,7 @@ var Texpectacle_Class = function () {
                 wrap.style.display = 'inline-block';
 
                 wrap.setAttribute('data-content', wrap.textContent);
-
                 wrap.addEventListener('animationend', function () {
-                    if (wrap) {
-                        wrap.setAttribute('data-content', '');
-                    }
                     wrap = null;
                 });
                 elementInner.appendChild(wrap);
