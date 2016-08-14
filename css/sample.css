@@ -992,13 +992,10 @@ pre code > span:last-child::before
 
     color: #fff;
 }
-.download-btn .icon,
-.git-hub-btn .icon
+.download-btn > .fa,
+.git-hub-btn > .fa
 {
-    display: inline-block;
-
-    max-width: 1em;
-    margin: 0 12px 0 0;
+    margin: 0 .2em 0 0;
 }
 
 .git-hub-btn
@@ -1074,7 +1071,7 @@ pre code > span:last-child::before
     font-size: 10rem;
     font-weight: bold;
 
-    margin: 0;
+    margin: 0 0 40px;
 }
 .top .sales-copy
 {
@@ -1168,6 +1165,15 @@ pre code > span:last-child::before
     padding: 0 0 12px;
 
     border-bottom: 1px dotted #adadad;
+}
+
+@media screen and (max-width: 860px)
+{
+    .top .title
+    {
+        font-size: 60px;
+        font-size: 6rem;
+    }
 }
 
 @media screen and (max-width: 640px)
