@@ -1079,13 +1079,15 @@ pre code > span:last-child::before
 
     margin: 0 0 40px;
 }
-.top .sales-copy
-{
-    margin: 20px 0;
-}
 .top .animation-test
 {
     margin: 0 0 30px;
+}
+.top .share-holder
+{
+    margin: 0 0 20px; 
+
+    text-align: right;
 }
 .top .input-select
 {
