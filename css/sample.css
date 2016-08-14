@@ -1045,6 +1045,12 @@ pre code > span:last-child::before
 
     letter-spacing: 1.2px;
 }
+.footer .inner .copy > a
+{
+    margin: 0 0 0 .5em; 
+
+    text-decoration: underline;
+}
 
 .top
 {
