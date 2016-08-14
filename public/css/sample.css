@@ -1138,16 +1138,6 @@ pre code > span:last-child::before
 {
     margin: 0 0 30px;
 }
-.how .source-sample .source-area
-{
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-}
-.how .source-sample .source-area.scrolled
-{
-    -webkit-animation: spinVertical 1.2s linear 0s 1 forwards;
-            animation: spinVertical 1.2s linear 0s 1 forwards;
-}
 
 .reference
 {
