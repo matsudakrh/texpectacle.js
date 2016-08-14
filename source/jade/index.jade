@@ -4,7 +4,7 @@ block title
 	title texpectacle.js
 
 block css
-	link(rel="stylesheet", href="css/sample.css")
+	link(rel="stylesheet", href="css/sample.min.css")
 
 block script
 	script(src='js/sample.min.pack.js')
@@ -46,4 +46,4 @@ block main
 					dd 対象とする要素にdata-text-animation属性としてクラス名を指定することで任意のアニメーションを指定します。設定されていない場合は「fadeIn」クラスを割り当てます。
 
 					dt: span element > span[data-content^=]
-					dd 当プラグインではテキストにdata-content属性を設定することで、擬似要素を使ったアニメーションを行っています。自作する場合は::beforeもしくは::afterのcontentプロパティにattr(data-content)を指定して下さい。
+					dd テキストにdata-content属性を設定することで、rotateDropShadowクラスやscaleDownShadowクラスで擬似要素を使ったアニメーションを行っています。自作する場合は::beforeもしくは::afterのcontentプロパティにattr(data-content)を指定して下さい。
