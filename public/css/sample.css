@@ -28,8 +28,10 @@
     margin: auto;
 
     content: attr(data-content);
-    -webkit-animation: scaleDownShadow .6s linear 0s 1 forwards;
-            animation: scaleDownShadow .6s linear 0s 1 forwards;
+    -webkit-animation: scaleDownShadow .6s linear 0s 1;
+            animation: scaleDownShadow .6s linear 0s 1; 
+
+    opacity: 0;
 }
 
 @-webkit-keyframes scaleDownShadow
@@ -85,8 +87,10 @@
     margin: auto;
 
     content: attr(data-content);
-    -webkit-animation: rotateDropShadow 1s linear 0s 1 forwards;
-            animation: rotateDropShadow 1s linear 0s 1 forwards;
+    -webkit-animation: rotateDropShadow 1s linear 0s 1;
+            animation: rotateDropShadow 1s linear 0s 1; 
+
+    opacity: 0;
 }
 
 @-webkit-keyframes rotateDropShadow

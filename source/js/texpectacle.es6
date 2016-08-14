@@ -76,11 +76,7 @@ class Texpectacle_Class {
             wrap.style.display = 'inline-block';
             // 擬似要素を絡めたアニメーションをするためにカスタム属性を設定
             wrap.setAttribute('data-content', wrap.textContent);
-            // animation終了時カスタム属性からテキストを削除,擬似要素の重なりを防ぐ
             wrap.addEventListener( 'animationend', () => {
-                if ( wrap ) {
-                    wrap.setAttribute('data-content', '');
-                }
                 wrap = null;
             });
             elementInner.appendChild(wrap);
