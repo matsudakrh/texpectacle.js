@@ -1,0 +1,57 @@
+=font_size($size)
+  font-size: $size + px
+  font-size: ($size / 10) * 1rem
+
+=box($width: auto, $height: false)
+  width: $width
+  box-sizing: border-box
+  @if $height
+    height: $height
+
+=flex_container($flow-vector: row, $flow-wrap: wrap)
+  display: flex
+  flex-flow: $flow-vector $flow-wrap
+
+=flex_width($num: 100%)
+  flex-basis: $num
+  width: $num
+
+=text_justify() //- 余りあてにはならない スマホだけの方がいいかも
+  text-align: justify
+  text-justify: inter-ideograph
+  line-break: strict
+
+=background($property, $size: auto)
+
+  background: $property
+  background-size: $size
+
+=clearfix()
+  &::after
+    content: ''
+    display: block
+    clear: both
+    float: none
+
+
+
+=query( $device: mobile )
+
+  $mobile: 640
+  $tablet: 860
+  $xs: 320
+
+  @if $device == xs
+    @media screen and (max-width: $xs + 'px')
+      @content
+  @if $device == mobile
+    @media screen and (max-width: $mobile + 'px')
+      @content
+  @else if $device == tablet
+    @media screen and (max-width: $tablet + 'px')
+      @content
+  @else if $device == pc
+    @media screen and (min-width: ($tablet + 1) + 'px')
+      @content
+
+

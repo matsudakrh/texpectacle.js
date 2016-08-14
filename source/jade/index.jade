@@ -1,0 +1,49 @@
+extends components/_layout
+
+block title
+	title texpectacle.js
+
+block css
+	link(rel="stylesheet", href="css/sample.css")
+
+block script
+	script(src='js/sample.min.pack.js')
+
+block main
+	main
+		section.how
+			.inner
+				h2#howTitle.title(data-text-animation="scaleDownShadow") How to Use
+				.source-sample
+					include components/_code
+
+				.description
+					p
+						| 当プラグインはcssアニメーションを使用しています。texpectacle(.min).js及びtexpectacle(.min).cssを読み込み、テキストを含む要素に
+						strong data-text-animation属性
+						| でアニメーション用のクラス名を指定し、サンプルの様に実行してください。後はプラグイン側でスクロール位置を判定しアニメーションを実行します。
+		section.reference
+			.inner
+				h2#referenceTitle.title(data-text-animation="dashLeft") Reference
+				dl
+					dt: span var txp = texpectacle(element[, duration[, offsetTop]])
+					dd
+						| getElementByIdにより取得した要素を第一引数で受け取り、新たなインスタンスを返します。任意で第二引数にアニメーションの総時間を渡すことが出来ます。第三引数には対象とする要素がウィンドウの高さに対してどの位置に表示されている時アニメーションを実行するかをパーセントで指定することが出来ます。指定可能な値は20~100です。
+
+					dt: span txp.animation()
+					dd animationを呼び出す事で、任意のタイミングでアニメーションを開始します。
+
+					dt: span txp.setScroll()
+					dd 対象とする要素がウィンドウの上部からoffsetTopで指定したパーセントの高さまでの範囲に表示された時、一度だけanimationを実行します。
+
+					dt: span txp.startCallback = callback
+					dd アニメーション開始時に実行するコールバック関数を指定することが出来ます。
+
+					dt: span txp.endCallback = callback
+					dd アニメーション終了時に実行するコールバック関数を指定することが出来ます。
+
+					dt: span element[data-text-animation^=]
+					dd 対象とする要素にdata-text-animation属性としてクラス名を指定することで任意のアニメーションを指定します。設定されていない場合は「fadeIn」クラスを割り当てます。texpectacle.cssを読み込まずに使用する場合は注意して下さい。
+
+					dt: span element > span[data-content^=]
+					dd 当プラグインではテキストにdata-content属性を設定することで、擬似要素を使ったアニメーションを行っています。自作する場合は::beforeもしくは::afterのcontentプロパティにattr(data-content)を指定して下さい。

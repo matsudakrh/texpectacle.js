@@ -1,0 +1,23 @@
+.dashLeft
+  animation: dashLeft 1.2s cubic-bezier(0.08, 0.76, 0.9, 1.33) 0s 1 forwards
+  transform-origin: bottom left
+
+@keyframes dashLeft
+  0%
+    transform: translateX(100vw)
+  90%
+    transform: rotateZ(-60deg)
+  100%
+    transform: translateX(0) rotateZ(0deg)
+
+.dashRight
+  animation: dashRight 1.2s cubic-bezier(0.08, 0.76, 0.9, 1.33) 0s 1 forwards
+  transform-origin: bottom right
+
+@keyframes dashRight
+  0%
+    transform: translateX(-100vw)
+  90%
+    transform: rotateZ(60deg)
+  100%
+    transform: translateX(0) rotateZ(0deg)

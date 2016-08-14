@@ -1,0 +1,50 @@
+
+.jumpRight
+  animation: jumpRight 0.2s cubic-bezier(0, 0, 0.11, 1.03) 0s 1 forwards
+
+@keyframes jumpRight
+  0%
+    opacity: 0
+    transform: translate(-3em, 4em) scale(3)
+
+  100%
+    opacity: 1
+    transform: translate(0, 0) scale(1)
+
+.jumpLeft
+  animation: jumpLeft 0.2s cubic-bezier(0, 0, 0.11, 1.03) 0s 1 forwards
+
+@keyframes jumpLeft
+  0%
+    opacity: 0
+    transform: translate(3em, 4em) scale(3)
+
+  100%
+    opacity: 1
+    transform: translate(0, 0) scale(1)
+
+
+.dropRight
+  animation: dropRight 0.2s cubic-bezier(0, 0, 0.32, 1.09) 0s 1 forwards
+
+
+@keyframes dropRight
+  0%
+    opacity: 0
+    transform: translate(-3em, -4em) scale(3)
+  100%
+    opacity: 1
+    transform: translate(0, 0) scale(1)
+
+
+.dropLeft
+  animation: dropLeft 0.2s cubic-bezier(0, 0, 0.32, 1.09) 0s 1 forwards
+
+
+@keyframes dropLeft
+  0%
+    opacity: 0
+    transform: translate(3em, -4em) scale(3)
+  100%
+    opacity: 1
+    transform: translate(0, 0) scale(1)

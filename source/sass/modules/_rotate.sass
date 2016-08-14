@@ -1,0 +1,38 @@
+
+.rotateDrop
+  animation: rotateDrop 0.8s ease-out 0s 1 forwards
+
+@keyframes rotateDrop
+  0%
+    opacity: 0
+    transform: translateY(-30px) rotateZ(240deg)
+
+  100%
+    opacity: 1
+    transform: translateY(0px) rotateZ(0deg)
+
+
+
+$hook: cubic-bezier(0.36, 1.67, 1, 1)
+$duray: 0.8s
+.rotateLeftScaleUp
+  animation: rotateLeftScaleUp $duray $hook 0s 1 forwards
+
+@keyframes rotateLeftScaleUp
+  0%
+    opacity: 0
+    transform: scale(0) rotate(840deg)
+  100%
+    opacity: 1
+    transform: scale(1) rotate(0deg)
+
+.rotateRightScaleUp
+  animation: rotateRightScaleUp $duray $hook 0s 1 forwards
+
+@keyframes rotateRightScaleUp
+  0%
+    opacity: 0
+    transform: scale(0) rotate(-840deg)
+  100%
+    opacity: 1
+    transform: scale(1) rotate(0deg)

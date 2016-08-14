@@ -1,0 +1,90 @@
+@import function
+@import color
+
+
+.top
+  $bg: lighten($main-c, 50%)
+  text-align: center
+  height: 80vh
+  min-height: 500px
+  +flex_container(row, nowrap)
+  align-items: center
+  background: $bg
+  .inner
+    @extend .inner
+  .title
+    +font_size(100)
+    font-weight: bold
+    margin: 0
+  .sales-copy
+    margin: 20px 0
+  .animation-test
+    margin: 0 0 30px
+  .input-select
+    +font_size(20)
+    text-align: center
+    box-sizing: border-box
+    //background: lighten($main-c, 56%)
+    background: transparent
+    color: darken($main-c, 20%)
+    padding: 0.5em 1em
+    border-bottom: 1px solid $main-c
+  .run
+    +font_size(20)
+    color: darken($main-c, 20%)
+    box-sizing: border-box
+    background: transparent
+    padding: 0.5em 1em
+    border: 1px solid $main-c
+    &:active
+      background: $main-c
+      color: #fff
+      cursor: pointer
+
++query(pc)
+  .top
+    .run
+      transition: 0.2s linear 0s
+      &:hover
+        background: $main-c
+        color: #fff
+        cursor: pointer
+
+
+// ================= top ================= //
+
+.how
+  padding: 40px 0
+  .inner
+    @extend .inner
+  .source-sample
+    margin: 0 0 30px
+
+  .source-sample
+    .source-area
+      transform: rotateX(90deg)
+      &.scrolled
+        animation: spinVertical 1.2s linear 0s 1 forwards
+
+
+// ================= how ================= //
+
+.reference
+  padding: 40px 0
+  .inner
+    @extend .inner
+  dl
+    dt
+      margin: 0 0 16px
+      > span
+        display: inline-block
+        +font_size(18)
+        background: #efefef
+        padding: 0.2em 0.5em
+    dd
+      padding: 0 0 12px
+      border-bottom: 1px dotted #adadad
+      margin: 0 0 24px
+
+
+// ============== reference ============== //

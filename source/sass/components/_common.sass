@@ -1,0 +1,148 @@
+@charset "utf-8"
+@import function
+@import color
+
+html
+  font-size: 62.5%
+  background: lighten($main-c, 50%)
+
+body
+  +font_size(16)
+  font-family:  "游ゴシック" , Georgia, "Yu Gothic" , Helvetica ,"ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", sans-serif
+  letter-spacing: 1.2px
+  color: #313131
+  background: #fff
+  //-cursor: default
+
+.wrapper
+  overflow: hidden
+a
+  text-decoration: none
+  color: inherit
+
+h1, h2, p
+  margin: 0
+
+ul, ol
+  padding: 0
+  list-style: none
+
+input, textarea, button, select
+  -webkit-appearance: none !important
+  -moz-appearance: none !important
+  border: none
+  border-radius: 0
+  box-shadow: none
+  &:focus
+    outline: none
+  &:active
+    border: none
+
+img
+  max-width: 100%
+
+
+pre
+  width: 100%
+  white-space: nowrap
+  margin: 0
+  overflow-x: scroll
+  code
+    display: table
+    width: 100%
+    line-height: 1.8
+    $bg-c: #ddd
+
+    > span
+      //background: lighten($bg-c, 10%)
+      background: #2f2f2f
+      display: block
+      padding-left: 3.5em
+      padding-right: 2em
+      margin: 0
+      position: relative
+      counter-increment: span
+      white-space: pre
+      &::before
+        content: counter(span)
+        //color: darken($main-c, 30%)
+        text-align: center
+        display: block
+        box-sizing: border-box
+        color: #2f2f2f
+        background: lighten($main-c, 20%)
+        position: absolute
+        left: 0
+        width: 2.5em
+        height: 100%
+        user-select: none
+        -webkit-touch-callout: none
+      //-&:nth-child(2n)
+        background: lighten($bg-c, 0%)
+      border-bottom: 1px solid #282828
+      &:last-child
+        &::before
+          border-bottom: none
+
+
+.title
+  text-align: center
+  font-weight: normal
+  +font_size(52)
+  margin: 0 0 20px
+
+
+.row
+  +flex_container(row, wrap)
+  .col
+    +flex_width(50%)
+    box-sizing: border-box
+
+.inner
+  width: 980px
+  margin: 0 auto
++query()
+  .inner
+    width: 90%
+
+.btn-holder
+  +font_size(22)
+  text-align: center
+  margin: 20px 0 0
+
+.download-btn, .git-hub-btn
+  display: inline-block
+  color: #fff
+  padding: 0.6em 1em
+  vertical-align: middle
+  .icon
+    display: inline-block
+    max-width: 1em
+    margin: 0 12px 0 0
+.git-hub-btn
+  background: #3f3f3f
+  margin: 0 0 0 30px
+.download-btn
+  background: darken($main-c, 16%)
+
+
+.sp-visible
+  display: none
+
++query()
+  .sp-visible
+    display: inline
+  .download-btn
+    margin: 0 0 20px
+
+
+.footer
+  padding: 30px 0
+  background: $main-c
+  color: #fff
+  .inner
+    @extend .inner
+    text-align: center
+    .copy
+      letter-spacing: 1.2px
+      +font_size(14)

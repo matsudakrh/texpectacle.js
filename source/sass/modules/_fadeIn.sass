@@ -1,0 +1,36 @@
+
+
+
+.fadeIn
+  animation: fadeIn 1s linear 0s 1 forwards
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+
+.fadeInLeft
+  animation: fadeInLeft 1s ease-out 0s 1 forwards
+
+@keyframes fadeInLeft
+  0%
+    opacity: 0
+    transform: translateX(-100vw)
+  100%
+    opacity: 1
+    transform: translateX(0)
+
+.fadeInRight
+  animation: fadeInRight 1s ease-out 0s 1 forwards
+
+@keyframes fadeInRight
+  0%
+    opacity: 0
+    transform: translateX(100vw)
+  100%
+    opacity: 1
+    transform: translateX(0)
+
