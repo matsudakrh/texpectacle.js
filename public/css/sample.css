@@ -72,8 +72,8 @@
 
 .rotateDropShadow
 {
-    -webkit-animation: rotateDrop 1s ease-out 0s 1 forwards;
-            animation: rotateDrop 1s ease-out 0s 1 forwards;
+    -webkit-animation: rotateDrop 1s linear 0s 1 forwards;
+            animation: rotateDrop 1s linear 0s 1 forwards;
 }
 .rotateDropShadow::before
 {
