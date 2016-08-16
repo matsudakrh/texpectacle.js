@@ -180,17 +180,6 @@ class Texpectacle_Class {
 }
 const texpectacle = function (element, duration = 2, offsetTop = 80) {
 
-    const style = window.getComputedStyle(document.body);
-
-    if (
-        !style.hasOwnProperty('animation') &&
-        !style.hasOwnProperty('-webkit-animation') ) {
-        return {
-            setScroll: function () {},
-            animation: function () {}
-        };
-    }
-
     if ( offsetTop < 20 ) {
         offsetTop = 20;
     } else if ( offsetTop > 100 ) {
@@ -201,6 +190,15 @@ const texpectacle = function (element, duration = 2, offsetTop = 80) {
 
     if ( isNaN(duration) ) {
         duration = 2;
+    }
+
+    // animationに対応していない時はテキストを一括表示
+    const style = window.getComputedStyle(document.body);
+
+    if (
+        !style.hasOwnProperty('animation') &&
+        !style.hasOwnProperty('-webkit-animation') ) {
+        duration = 0;
     }
 
     return new Texpectacle_Class(element, duration, offsetTop);
