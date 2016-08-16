@@ -202,15 +202,6 @@ var texpectacle = function texpectacle(element) {
     var offsetTop = arguments.length <= 2 || arguments[2] === undefined ? 80 : arguments[2];
 
 
-    var style = window.getComputedStyle(document.body);
-
-    if (!style.hasOwnProperty('animation') && !style.hasOwnProperty('-webkit-animation')) {
-        return {
-            setScroll: function setScroll() {},
-            animation: function animation() {}
-        };
-    }
-
     if (offsetTop < 20) {
         offsetTop = 20;
     } else if (offsetTop > 100) {
@@ -221,6 +212,12 @@ var texpectacle = function texpectacle(element) {
 
     if (isNaN(duration)) {
         duration = 2;
+    }
+
+    var style = window.getComputedStyle(document.body);
+
+    if (!style.hasOwnProperty('animation') && !style.hasOwnProperty('-webkit-animation')) {
+        duration = 0;
     }
 
     return new Texpectacle_Class(element, duration, offsetTop);
