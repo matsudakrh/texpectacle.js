@@ -28,6 +28,10 @@
     margin: auto;
 
     content: attr(data-content);
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     -webkit-animation: scaleDownShadow .6s linear 0s 1;
             animation: scaleDownShadow .6s linear 0s 1; 
 
@@ -87,6 +91,10 @@
     margin: auto;
 
     content: attr(data-content);
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     -webkit-animation: rotateDropShadow 1s linear 0s 1;
             animation: rotateDropShadow 1s linear 0s 1; 
 
@@ -1141,7 +1149,7 @@ pre code > span:last-child::before
 
 .how
 {
-    padding: 40px 0;
+    padding: 40px 0 0;
 }
 .how .source-sample
 {
