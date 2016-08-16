@@ -30,7 +30,7 @@ const lisenceCSS = `
 `;
 
 
-gulp.task( 'assets', ['sass', 'script'], function () {
+gulp.task( 'assets', ['sass', 'webpack'], function () {
     gulp.src( ['public/css/texpectacle.css', 'public/css/texpectacle.min.css'])
         .pipe( header(lisenceCSS))
         .pipe( gulp.dest('assets/css'));
