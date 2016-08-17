@@ -75,7 +75,7 @@ var Texpectacle_Class = function () {
 
             this.element.innerHTML = '';
 
-            var elementInner = document.createDocumentFragment();
+            var elementInner = document.c();
             var span = document.createElement('span');
             [].forEach.call(this.text, function (char) {
                 var wrap = span.cloneNode();
@@ -213,12 +213,6 @@ var texpectacle = function texpectacle(element) {
 
     if (isNaN(duration)) {
         duration = 2;
-    }
-
-    var style = window.getComputedStyle(document.body);
-
-    if (!style.hasOwnProperty('animation') && !style.hasOwnProperty('-webkit-animation')) {
-        duration = 0;
     }
 
     return new Texpectacle_Class(element, duration, offsetTop);

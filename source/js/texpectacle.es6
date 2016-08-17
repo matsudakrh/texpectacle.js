@@ -67,7 +67,7 @@ class Texpectacle_Class {
     insertText () {
         this.element.innerHTML = '';
         // テキストをforEachで回してあらかじめ全て追加しておく(text-align対策)
-        const elementInner = document.createDocumentFragment();
+        const elementInner = document.c();
         const span = document.createElement('span');
         [].forEach.call( this.text, (char) => {
             let wrap = span.cloneNode();
@@ -189,15 +189,6 @@ const texpectacle = function (element, duration = 2, offsetTop = 80) {
 
     if ( isNaN(duration) ) {
         duration = 2;
-    }
-
-    // animationに対応していない時はテキストを一括表示
-    const style = window.getComputedStyle(document.body);
-
-    if (
-        !style.hasOwnProperty('animation') &&
-        !style.hasOwnProperty('-webkit-animation') ) {
-        duration = 0;
     }
 
     return new Texpectacle_Class(element, duration, offsetTop);
