@@ -7,6 +7,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Texpectacle_Class = function () {
     function Texpectacle_Class(element, duration, offsetTop) {
+        var _this = this;
+
         _classCallCheck(this, Texpectacle_Class);
 
         this.element = element;
@@ -20,8 +22,12 @@ var Texpectacle_Class = function () {
         this.length = this.text.length;
 
         this.baseDuration = duration;
+        this.setDuration();
 
         this.offsetTop = parseInt(offsetTop) / 100;
+        window.addEventListener('load', function () {
+            _this.setScroll();
+        });
     }
 
     _createClass(Texpectacle_Class, [{
@@ -37,11 +43,12 @@ var Texpectacle_Class = function () {
             this.element.appendChild(element);
 
             this.getAnimationProperty(element);
-
-            this.duration = this.baseDuration * 1000 / this.length - this.animationDuration * 1000 / this.length - this.animationDelay * 1000 / this.length;
-
-            this.duration -= Math.round(this.duration / this.length);
             this.element.removeChild(element);
+
+            var hogehoge = this.baseDuration - this.animationDuration;
+
+            this.duration = hogehoge / this.length * 1000;
+            this.duration = Math.round(this.duration - this.duration / this.length);
         }
     }, {
         key: 'getSize',
@@ -53,8 +60,6 @@ var Texpectacle_Class = function () {
         value: function judge() {
             if (this.size.top <= window.innerHeight * this.offsetTop && this.size.top >= 0) {
                 this.animation();
-                window.removeEventListener('resize', this.resizeFuncName);
-                window.removeEventListener('scroll', this.scrollFuncName);
             }
         }
     }, {
@@ -71,7 +76,7 @@ var Texpectacle_Class = function () {
     }, {
         key: 'insertText',
         value: function insertText() {
-            var _this = this;
+            var _this2 = this;
 
             this.element.innerHTML = '';
 
@@ -79,7 +84,7 @@ var Texpectacle_Class = function () {
             var span = document.createElement('span');
             [].forEach.call(this.text, function (char) {
                 var wrap = span.cloneNode();
-                wrap.innerHTML = _this.escapeHTML(char);
+                wrap.innerHTML = _this2.escapeHTML(char);
                 wrap.style.visibility = 'hidden';
                 wrap.style.display = 'inline-block';
 
@@ -94,50 +99,50 @@ var Texpectacle_Class = function () {
     }, {
         key: 'animation',
         value: function animation() {
-            var _this2 = this;
+            var _this3 = this;
+
+            window.removeEventListener('resize', this.resizeFuncName);
+            window.removeEventListener('scroll', this.scrollFuncName);
 
             if (this.endTimer) {
                 clearTimeout(this.endTimer);
             }
-            this.insertText();
-            this.index = 0;
+            if (this.addClassTimer) {
+                clearTimeout(this.addClassTimer);
+            }
             this.getClassName();
+            this.insertText();
+            this.targetIndex = 0;
             this.setDuration();
             if (this.duration <= this.animationDelay + this.animationDuration) {
                 this.element.childNodes.forEach(function (target) {
                     target.style.visibility = 'visible';
-                    target.className = _this2.className;
+                    target.className = _this3.className;
                 });
-                if (this.endTimer) {
-                    clearTimeout(this.endTimer);
-                }
                 if (typeof this.endCallback === 'function') {
                     this.endTimer = setTimeout(function () {
-                        _this2.endCallback();
+                        _this3.endCallback();
                     }, (this.animationDelay + this.animationDuration) * 1000);
                 }
                 return;
             }
             var addClass = function addClass() {
-                var target = _this2.element.childNodes[_this2.index];
+                var target = _this3.element.childNodes[_this3.targetIndex];
                 target.style.visibility = 'visible';
-                target.className = _this2.className;
-                _this2.index++;
-                if (_this2.index >= _this2.length) {
-                    _this2.getAnimationProperty(target);
-                    if (typeof _this2.endCallback === 'function') {
-                        _this2.endTimer = setTimeout(function () {
-                            _this2.endCallback();
-                        }, (_this2.animationDelay + _this2.animationDuration) * 1000);
+                target.className = _this3.className;
+                _this3.targetIndex++;
+                if (_this3.targetIndex >= _this3.length) {
+                    if (typeof _this3.endCallback === 'function') {
+                        _this3.getAnimationProperty(target);
+                        _this3.endTimer = setTimeout(function () {
+                            _this3.endCallback();
+                        }, (_this3.animationDelay + _this3.animationDuration) * 1000);
                     }
                     return;
                 }
-                if (_this2.addClassTimer) {
-                    clearTimeout(_this2.addClassTimer);
-                }
-                _this2.addClassTimer = setTimeout(function () {
+                _this3.addClassTimer = setTimeout(function () {
                     addClass();
-                }, _this2.duration);
+                }, _this3.duration);
             };
 
             if (this.animationTimer) {
@@ -145,15 +150,15 @@ var Texpectacle_Class = function () {
             }
             this.animationTimer = setTimeout(function () {
                 addClass();
-                if (typeof _this2.startCallback === 'function') {
-                    _this2.startCallback();
+                if (typeof _this3.startCallback === 'function') {
+                    _this3.startCallback();
                 }
             }, this.duration);
         }
     }, {
         key: 'setScroll',
         value: function setScroll() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.insertText();
 
@@ -167,7 +172,7 @@ var Texpectacle_Class = function () {
                     clearTimeout(resizeTimer);
                 }
                 resizeTimer = setTimeout(function () {
-                    _this3.judge();
+                    _this4.judge();
                 }, 200);
             });
             window.addEventListener('scroll', this.scrollFuncName = function () {
@@ -175,8 +180,8 @@ var Texpectacle_Class = function () {
                     clearTimeout(scrollTimer);
                 }
                 scrollTimer = setTimeout(function () {
-                    _this3.getSize();
-                    _this3.judge();
+                    _this4.getSize();
+                    _this4.judge();
                 }, 40);
             });
             this.judge();
@@ -200,22 +205,22 @@ var Texpectacle_Class = function () {
 
 var texpectacle = function texpectacle(element) {
     var duration = arguments.length <= 1 || arguments[1] === undefined ? 2 : arguments[1];
-    var offsetTop = arguments.length <= 2 || arguments[2] === undefined ? 80 : arguments[2];
+    var offsetTop = arguments.length <= 2 || arguments[2] === undefined ? 90 : arguments[2];
 
 
-    if (offsetTop < 20) {
-        offsetTop = 20;
-    } else if (offsetTop > 100) {
-        offsetTop = 100;
-    } else if (isNaN(offsetTop)) {
-        offsetTop = 80;
+    var ofsT = parseInt(offsetTop);
+
+    if (ofsT < 20) {
+        ofsT = 20;
+    } else if (ofsT > 100) {
+        ofsT = 100;
+    } else if (!ofsT) {
+        ofsT = 90;
     }
-
     if (isNaN(duration)) {
         duration = 2;
     }
-
-    return new Texpectacle_Class(element, duration, offsetTop);
+    return new Texpectacle_Class(element, duration, ofsT);
 };
 if (typeof module !== 'undefined') {
     module.exports = texpectacle;
