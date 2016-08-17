@@ -29,3 +29,9 @@ const HowToUseAnim = texpectacle(howToUse);
 const referenceTitle = document.getElementById('referenceTitle');
 
 const referenceAnim = texpectacle(referenceTitle);
+
+window.addEventListener( 'load', function () {
+    firstSample.setScroll();
+    referenceAnim.setScroll();
+    HowToUseAnim.setScroll();
+});

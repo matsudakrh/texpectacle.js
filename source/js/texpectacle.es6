@@ -25,9 +25,6 @@ class Texpectacle_Class {
         this.setDuration();
         // ブラウザの縦幅に対し対象の要素がどの程度の高さに来た時実行するかを設定
         this.offsetTop = parseInt(offsetTop) / 100;
-        window.addEventListener( 'load', () => {
-            this.setScroll();
-        });
     }
     getClassName () {
         this.className = this.element.getAttribute('data-text-animation') || 'fadeIn';
