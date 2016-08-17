@@ -75,7 +75,7 @@ var Texpectacle_Class = function () {
 
             this.element.innerHTML = '';
 
-            var elementInner = document.c();
+            var elementInner = document.createDocumentFragment();
             var span = document.createElement('span');
             [].forEach.call(this.text, function (char) {
                 var wrap = span.cloneNode();
