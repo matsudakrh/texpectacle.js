@@ -109,7 +109,6 @@ var Texpectacle_Class = function () {
             if (this.endTimer) {
                 clearTimeout(this.endTimer);
             }
-
             this.insertText();
             this.index = 0;
             this.getClassName();
@@ -165,6 +164,8 @@ var Texpectacle_Class = function () {
         key: 'setScroll',
         value: function setScroll() {
             var _this3 = this;
+
+            this.insertText();
 
             var resizeTimer = false;
             var scrollTimer = false;
