@@ -67,7 +67,7 @@ class Texpectacle_Class {
     insertText () {
         this.element.innerHTML = '';
         // テキストをforEachで回してあらかじめ全て追加しておく(text-align対策)
-        const elementInner = document.c();
+        const elementInner = document.createDocumentFragment();
         const span = document.createElement('span');
         [].forEach.call( this.text, (char) => {
             let wrap = span.cloneNode();
