@@ -88,7 +88,6 @@ class Texpectacle_Class {
         if ( this.endTimer ) {
             clearTimeout(this.endTimer);
         }
-
         this.insertText();
         this.index = 0;
         this.getClassName();
@@ -141,7 +140,7 @@ class Texpectacle_Class {
         }, this.duration);
     }
     setScroll () {
-
+        this.insertText();
         // 処理の過剰な重複を防ぐ為の仮変数
         let resizeTimer = false;
         let scrollTimer = false;
