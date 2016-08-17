@@ -9,7 +9,7 @@ var firstSample = texpectacle(sample);
 
 var run = function run() {
     sample.setAttribute('data-text-animation', changeSelect.value);
-    firstSample.setScroll();
+    firstSample.animation();
 };
 
 changeSelect.addEventListener('change', function () {
@@ -22,16 +22,10 @@ btn.addEventListener('click', function () {
     run();
 });
 
-run();
-
 var howToUse = document.getElementById('howTitle');
 
 var HowToUseAnim = texpectacle(howToUse);
 
-HowToUseAnim.setScroll();
-
 var referenceTitle = document.getElementById('referenceTitle');
 
 var referenceAnim = texpectacle(referenceTitle);
-
-referenceAnim.setScroll();

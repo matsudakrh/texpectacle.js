@@ -22,8 +22,12 @@ class Texpectacle_Class {
         this.length = this.text.length;
         // アニメーションさせる時間からcssで設定されているdelay,durationをマイナスする
         this.baseDuration = duration;
+        this.setDuration();
         // ブラウザの縦幅に対し対象の要素がどの程度の高さに来た時実行するかを設定
         this.offsetTop = parseInt(offsetTop) / 100;
+        window.addEventListener( 'load', () => {
+            this.setScroll();
+        });
     }
     getClassName () {
         this.className = this.element.getAttribute('data-text-animation') || 'fadeIn';
@@ -35,13 +39,16 @@ class Texpectacle_Class {
         this.element.appendChild(element);
         // 外部ファイルを含めたstyleの取得
         this.getAnimationProperty(element);
-        // テキストを追加する総時間からanimation実行時間をマイナスする
-        this.duration =  ( ( this.baseDuration  * 1000 ) / this.length ) -
-            ( this.animationDuration * 1000 / this.length ) -
-            ( this.animationDelay * 1000 / this.length );
-        // animation実行時のsetTimeout分を引く
-        this.duration -= Math.round(this.duration / this.length);
         this.element.removeChild(element);
+
+        // テキストを追加する総時間からanimation実行時間をマイナスする
+
+        let hogehoge = this.baseDuration - this.animationDuration;
+        // this.duration = ( ( this.baseDuration  * 1000 ) / ( this.length + 2 ) ) -
+        //     ( this.animationDuration * 1000 / this.length );
+        // animation実行時のsetTimeout分を引く
+        this.duration = ( hogehoge / this.length ) * 1000;
+        this.duration = Math.round( this.duration - ( this.duration / this.length ) );
     }
     getSize () {
         this.size = this.element.getBoundingClientRect();
@@ -51,8 +58,6 @@ class Texpectacle_Class {
         if ( this.size.top <= window.innerHeight * this.offsetTop &&
             this.size.top >= 0 ) {
             this.animation();
-            window.removeEventListener( 'resize', this.resizeFuncName);
-            window.removeEventListener( 'scroll', this.scrollFuncName);
         }
     }
     getAnimationProperty( element ) {
@@ -84,22 +89,24 @@ class Texpectacle_Class {
         this.element.appendChild(elementInner);
     }
     animation () {
+        window.removeEventListener( 'resize', this.resizeFuncName);
+        window.removeEventListener( 'scroll', this.scrollFuncName);
         // アニメーションが2度以上呼ばれた時や途中で再度呼ばれた時の表示崩れを対策する
         if ( this.endTimer ) {
             clearTimeout(this.endTimer);
         }
-        this.insertText();
-        this.index = 0;
+        if ( this.addClassTimer ) {
+            clearTimeout(this.addClassTimer);
+        }
         this.getClassName();
+        this.insertText();
+        this.targetIndex = 0;
         this.setDuration();
-        if (  this.duration <= this.animationDelay + this.animationDuration ) {
+        if ( this.duration <= this.animationDelay + this.animationDuration ) {
             this.element.childNodes.forEach( (target) => {
                 target.style.visibility = 'visible';
                 target.className = this.className;
             });
-            if ( this.endTimer ) {
-                clearTimeout(this.endTimer);
-            }
             if ( typeof this.endCallback === 'function' ) {
                 this.endTimer = setTimeout( () => {
                     this.endCallback();
@@ -108,21 +115,18 @@ class Texpectacle_Class {
             return;
         }
         const addClass = () => {
-            const target = this.element.childNodes[this.index];
+            const target = this.element.childNodes[this.targetIndex];
             target.style.visibility = 'visible';
-            target.className =  this.className;
-            this.index++;
-            if ( this.index >= this.length ) {
-                this.getAnimationProperty(target);
+            target.className = this.className;
+            this.targetIndex++;
+            if ( this.targetIndex >= this.length ) {
                 if ( typeof this.endCallback === 'function' ) {
+                    this.getAnimationProperty(target);
                     this.endTimer = setTimeout( () => {
                         this.endCallback();
                     }, ( this.animationDelay + this.animationDuration ) * 1000 );
                 }
                 return;
-            }
-            if ( this.addClassTimer ) {
-                clearTimeout(this.addClassTimer);
             }
             this.addClassTimer = setTimeout( () => {
                 addClass();
@@ -177,21 +181,21 @@ class Texpectacle_Class {
         return str;
     }
 }
-const texpectacle = function (element, duration = 2, offsetTop = 80) {
+const texpectacle = function (element, duration = 2, offsetTop = 90) {
 
-    if ( offsetTop < 20 ) {
-        offsetTop = 20;
-    } else if ( offsetTop > 100 ) {
-        offsetTop = 100;
-    } else if ( isNaN(offsetTop) ) {
-        offsetTop = 80
+    let ofsT = parseInt( offsetTop );
+
+    if ( ofsT < 20 ) {
+        ofsT = 20;
+    } else if ( ofsT > 100 ) {
+        ofsT = 100;
+    } else if ( !ofsT ) {
+        ofsT = 90;
     }
-
     if ( isNaN(duration) ) {
         duration = 2;
     }
-
-    return new Texpectacle_Class(element, duration, offsetTop);
+    return new Texpectacle_Class(element, duration, ofsT);
 };
 if ( typeof module !== 'undefined' ) {
     module.exports = texpectacle;
