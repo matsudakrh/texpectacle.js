@@ -145,9 +145,6 @@ class Texpectacle_Class {
         // 処理の過剰な重複を防ぐ為の仮変数
         let resizeTimer = false;
         let scrollTimer = false;
-        // アニメーション終了時removeEventListenerを行う為の関数名を設定
-        this.resizeFuncName = this.idName + '-resize' + Date.now();
-        this.scrollFuncName = this.idName + '-scroll' + Date.now();
         window.addEventListener( 'resize', this.resizeFuncName = () => {
             if ( resizeTimer ) {
                 clearTimeout(resizeTimer);

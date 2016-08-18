@@ -169,9 +169,6 @@ var Texpectacle_Class = function () {
 
             var resizeTimer = false;
             var scrollTimer = false;
-
-            this.resizeFuncName = this.idName + '-resize' + Date.now();
-            this.scrollFuncName = this.idName + '-scroll' + Date.now();
             window.addEventListener('resize', this.resizeFuncName = function () {
                 if (resizeTimer) {
                     clearTimeout(resizeTimer);
