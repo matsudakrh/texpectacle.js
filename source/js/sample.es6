@@ -35,3 +35,7 @@ window.addEventListener( 'load', function () {
     referenceAnim.setScroll();
     HowToUseAnim.setScroll();
 });
+
+var text = `
+<div></div>
+`;

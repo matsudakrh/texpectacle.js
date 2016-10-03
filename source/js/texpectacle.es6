@@ -24,7 +24,7 @@ class Texpectacle_Class {
         this.baseDuration = duration;
         this.setDuration();
         // ブラウザの縦幅に対し対象の要素がどの程度の高さに来た時実行するかを設定
-        this.offsetTop = parseInt(offsetTop) / 100;
+        this.offsetTop = parseInt(offsetTop, 10) / 100;
     }
     getClassName () {
         this.className = this.element.getAttribute('data-text-animation') || 'fadeIn';
@@ -39,13 +39,12 @@ class Texpectacle_Class {
         this.element.removeChild(element);
 
         // テキストを追加する総時間からanimation実行時間をマイナスする
-
-        let hogehoge = this.baseDuration - this.animationDuration;
+        const diffDuration = this.baseDuration - this.animationDuration;
         // this.duration = ( ( this.baseDuration  * 1000 ) / ( this.length + 2 ) ) -
         //     ( this.animationDuration * 1000 / this.length );
         // animation実行時のsetTimeout分を引く
-        this.duration = ( hogehoge / this.length ) * 1000;
-        this.duration = Math.round( this.duration - ( this.duration / this.length ) );
+        let tmpDuration = ( diffDuration / this.length ) * 1000;
+        this.duration = Math.round( tmpDuration - ( tmpDuration / this.length ) );
     }
     getSize () {
         this.size = this.element.getBoundingClientRect();
@@ -177,7 +176,7 @@ class Texpectacle_Class {
 }
 const texpectacle = function (element, duration = 2, offsetTop = 90) {
 
-    let ofsT = parseInt( offsetTop );
+    let ofsT = parseInt( offsetTop, 10 );
 
     if ( ofsT < 20 ) {
         ofsT = 20;

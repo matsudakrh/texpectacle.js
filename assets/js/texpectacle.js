@@ -32,7 +32,7 @@ var Texpectacle_Class = function () {
         this.baseDuration = duration;
         this.setDuration();
 
-        this.offsetTop = parseInt(offsetTop) / 100;
+        this.offsetTop = parseInt(offsetTop, 10) / 100;
     }
 
     _createClass(Texpectacle_Class, [{
@@ -50,10 +50,10 @@ var Texpectacle_Class = function () {
             this.getAnimationProperty(element);
             this.element.removeChild(element);
 
-            var hogehoge = this.baseDuration - this.animationDuration;
+            var diffDuration = this.baseDuration - this.animationDuration;
 
-            this.duration = hogehoge / this.length * 1000;
-            this.duration = Math.round(this.duration - this.duration / this.length);
+            var tmpDuration = diffDuration / this.length * 1000;
+            this.duration = Math.round(tmpDuration - tmpDuration / this.length);
         }
     }, {
         key: 'getSize',
@@ -210,7 +210,7 @@ var texpectacle = function texpectacle(element) {
     var offsetTop = arguments.length <= 2 || arguments[2] === undefined ? 90 : arguments[2];
 
 
-    var ofsT = parseInt(offsetTop);
+    var ofsT = parseInt(offsetTop, 10);
 
     if (ofsT < 20) {
         ofsT = 20;
